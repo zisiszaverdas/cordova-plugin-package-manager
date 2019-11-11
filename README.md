@@ -1,2 +1,2 @@
-# cordova-plugin-package-installer
-Cordova plugin to install packages
+# cordova-plugin-package-manager
+Cordova plugin to manage packages
