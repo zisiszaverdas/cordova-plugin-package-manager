@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-package-manager" version="1.0.0">
+    <name>PackageManager</name>
+    <description>Cordova plugin to manage packages</description>
+    <license>MIT</license>
+    <keywords>cordova,PackageManager</keywords>
+
+    <js-module src="www/package-manager.js" name="PackageManager">
+        <clobbers target="cordova.plugins.packageManager" />
+		<clobbers target="plugin.packageManager"/>
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+		<config-file target="config.xml" parent="/*">
+            <feature name="PackageManagerPlugin">
+                <param name="android-package" value="com.dataware.packagemanagerplugin.PackageManagerPlugin"/>
+            </feature>
+        </config-file>
+	   <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver android:name="com.dataware.packagemanagerplugin.InstallReceiver" />
+        </config-file>
+		
+        <source-file src="src/android/PackageManagerPlugin.java" target-dir="src/com/dataware/packagemanagerplugin" />
+        <source-file src="src/android/InstallReceiver.java" target-dir="src/com/dataware/packagemanagerplugin" />
+    </platform>
+</plugin>
